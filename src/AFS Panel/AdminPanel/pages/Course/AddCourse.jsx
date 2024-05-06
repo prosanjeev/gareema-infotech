@@ -22,6 +22,7 @@ import { toast } from "react-toastify";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import DashboardLayout from "../../components/DashboardLayout";
 import TitleBox from "../../../components/components/TitleBox";
+import { useNavigate } from "react-router-dom";
 
 const courseValidationSchema = object({
   courseCode: string().required("Course Code is Required"),
@@ -31,12 +32,11 @@ const courseValidationSchema = object({
   duration: string().required("Short Name is Required"),
   fee: number().required("Short Name is Required"),
   syllabus: string().required("Short Name is Required"),
-  
 });
 
 const AddCourse = () => {
   const [logoFile, setLogoFile] = useState(null); // State to hold logo file
-
+  const navigate = useNavigate();
   const CenterInformation = [
     {
       label: "Course code",
@@ -102,6 +102,17 @@ const AddCourse = () => {
         return; // Stop execution if username is not available
       }
 
+      // Check if shortName already exists
+      const shortNameQuery = query(
+        collection(fireDB, "courses"),
+        where("shortName", "==", values.shortName)
+      );
+      const shortNameQuerySnapshot = await getDocs(shortNameQuery);
+      if (!shortNameQuerySnapshot.empty) {
+        toast.error("This shortName already exists");
+        return; // Stop execution if shortName is not available
+      }
+
       // Upload logo file to Firebase Storage
       let courseUrl = "";
       if (logoFile) {
@@ -111,20 +122,21 @@ const AddCourse = () => {
         courseUrl = await getDownloadURL(courseRef);
       }
 
-      const coursesDocRef = await addDoc(
-        collection(fireDB, "courses"),
-        {
-          courseCode: values.courseCode,
-          courseName: values.courseName,
-          categoryName: values.categoryName,
-          shortName: values.shortName,
-          duration: values.duration,
-          fee: values.fee,
-          syllabus: values.syllabus,
-          coursePhotoUrl: courseUrl, // Add logo URL to Firestore
-        }
-      );
+      const currentDate = new Date();
+
+      const coursesDocRef = await addDoc(collection(fireDB, "courses"), {
+        courseCode: values.courseCode,
+        courseName: values.courseName,
+        categoryName: values.categoryName,
+        shortName: values.shortName,
+        duration: values.duration,
+        fee: values.fee,
+        syllabus: values.syllabus,
+        coursePhotoUrl: courseUrl, // Add logo URL to Firestore
+        createdAt: currentDate, // Add current date
+      });
       toast.success("New Course Added ", coursesDocRef.id);
+      navigate('/all-courses')
     } catch (e) {
       console.error("Error adding document: ", e);
     }

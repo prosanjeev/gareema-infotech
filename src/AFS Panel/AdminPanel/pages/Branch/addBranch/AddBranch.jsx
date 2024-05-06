@@ -25,6 +25,7 @@ import TitleBox from "../../../../components/components/TitleBox";
 import { toast } from "react-toastify";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { franchiseValidationSchema } from "../components/schema";
+import { useNavigate } from "react-router-dom";
 
 const AddBranch = () => {
   const [selectedState, setSelectedState] = useState("");
@@ -33,6 +34,7 @@ const AddBranch = () => {
   const [logoFile, setLogoFile] = useState(null); // State to hold logo file
   const [signFile, setSignFile] = useState(null); // State to hold signature file
   // const [centerId, setCenterId] = useState(""); // State to hold the centerId
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCities(data.cities[selectedState] || []);
@@ -154,7 +156,7 @@ const AddBranch = () => {
       // Upload logo file to Firebase Storage
       let logoUrl = "";
       if (logoFile) {
-        const logoRef = ref(storage, `franchise/${values.centerName}/logo`);
+        const logoRef = ref(storage, `franchise/${values.userName}/logo`);
         await uploadBytes(logoRef, logoFile);
         // Get download URL
         logoUrl = await getDownloadURL(logoRef);
@@ -165,7 +167,7 @@ const AddBranch = () => {
       if (signFile) {
         const signatureRef = ref(
           storage,
-          `franchise/${values.centerName}/signature`
+          `franchise/${values.userName}/signature`
         );
         // await signRef.put(signFile);
         // signUrl = await signRef.getDownloadURL();
@@ -198,6 +200,7 @@ const AddBranch = () => {
         }
       );
       toast.success("New Center Added ", franchiseDocRef.id);
+      navigate('/branch')
     } catch (e) {
       console.error("Error adding document: ", e);
     }

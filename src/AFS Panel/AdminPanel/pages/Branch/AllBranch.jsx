@@ -19,17 +19,21 @@ import { FaRegEdit } from "react-icons/fa";
 import { RiImageEditLine } from "react-icons/ri";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useNavigate } from "react-router-dom"; // Import useHistory
+import { useNavigate } from "react-router-dom"; // Import useHistory
 import {
   fetchBranches,
   selectBranches,
 } from "../../../redux/admin/branchSlice";
+import { toast } from "react-toastify";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { fireDB, storage } from "../../../firebase/FirebaseConfig";
+import { doc, updateDoc } from "firebase/firestore";
 
 const AllBranch = () => {
   const branches = useSelector(selectBranches);
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize useHistory hook
-  console.log(branches);
+
   useEffect(() => {
     dispatch(fetchBranches());
   }, [dispatch]);
@@ -42,6 +46,79 @@ const AllBranch = () => {
 
   const handleEditClick = (franchiseId) => {
     navigate("/update-branch", { state: { franchiseId } }); // Navigate to "/update-branch" with franchiseId
+  };
+
+  const handlePhotoSubmit = async (userName, centerId, newPhotoFile) => {
+    try {
+      // Upload new photo file to Firebase Storage
+      const photoRef = ref(storage, `franchise/${userName}/logo`);
+      await uploadBytes(photoRef, newPhotoFile);
+
+      // Get download URL of the new photo
+      const newPhotoUrl = await getDownloadURL(photoRef);
+
+      // Update the photoUrl field in Firestore
+      const studentRef = doc(fireDB, "franchiseData", centerId);
+      await updateDoc(studentRef, { photoUrl: newPhotoUrl });
+      dispatch(fetchBranches());
+      toast.success("Photo updated successfully");
+    } catch (error) {
+      console.error("Error updating photo: ", error);
+      toast.error("Failed to update photo");
+    }
+  };
+
+  const handlePhotoChange = async (userName, centerId, e) => {
+    const newPhotoFile = e.target.files[0];
+
+    // Check if the file size is less than 60kb
+    if (newPhotoFile.size > 60 * 1024) {
+      toast.error("Please select a photo less than 60kb in size.");
+      return;
+    }
+
+    // Read the file as a data URL
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      const dataUrl = event.target.result;
+
+      // Create a new image element to get the dimensions
+      const img = document.createElement("img");
+      img.onload = async () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        // Resize the image if necessary
+        if (newPhotoFile.size > 60 * 1024) {
+          const scaleFactor = (60 * 1024) / newPhotoFile.size;
+          canvas.width *= scaleFactor;
+          canvas.height *= scaleFactor;
+        }
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const resizedDataUrl = canvas.toDataURL("image/jpeg");
+
+        // Convert the data URL back to a Blob
+        const byteString = atob(resizedDataUrl.split(",")[1]);
+        const mimeString = resizedDataUrl
+          .split(",")[0]
+          .split(":")[1]
+          .split(";")[0];
+        let ab = new ArrayBuffer(byteString.length);
+        let ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+        }
+        const resizedFile = new Blob([ab], { type: mimeString });
+
+        // Upload the resized file to Firebase Storage
+        handlePhotoSubmit(userName, centerId, resizedFile);
+      };
+      img.src = dataUrl;
+    };
+    reader.readAsDataURL(newPhotoFile);
   };
 
   return (
@@ -130,7 +207,15 @@ const AllBranch = () => {
                     <Button
                       size="sm"
                       colorScheme="blue"
-                      onClick={() => handleEditClick(branch.id)} // Pass franchiseId to handleEditClick
+                      onClick={(e) => {
+                        const fileInput = document.createElement("input");
+                        fileInput.type = "file";
+                        fileInput.accept = "image/*";
+                        fileInput.addEventListener("change", (e) =>
+                          handlePhotoChange(branch.userName, branch.id, e)
+                        );
+                        fileInput.click();
+                      }} // Pass franchiseId to handleEditClick
                     >
                       <Icon as={RiImageEditLine} size="sm" color="white" />{" "}
                       {/* Update color to white */}

@@ -165,6 +165,9 @@ export const authSlice = createSlice({
       state.branchData = null;
       state.students = []; // Clear students data on logout
     },
+    setLoggedIn: (state, action) => {
+      state.isLoggedIn = action.payload;
+    },
     setbranchData: (state, action) => {
       state.branchData = action.payload;
     },
@@ -180,7 +183,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { login, logout, setbranchData, setStudents, setWallet, setRequestAmount } = authSlice.actions;
+export const { login, logout, setLoggedIn, setbranchData, setStudents, setWallet, setRequestAmount } = authSlice.actions;
 
 export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 export const selectUserId = (state) => state.auth.userId;

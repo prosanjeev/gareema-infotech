@@ -160,8 +160,13 @@ const StudentListPage = () => {
 
   return (
     <FranchiseDashboardLayout title="Students List">
-      <Flex direction="column" alignItems="center" mx={2} overflowX={{base:"auto"}} maxW="100%">
-     
+      <Flex
+        direction="column"
+        alignItems="center"
+        mx={2}
+        overflowX={{ base: "auto" }}
+        maxW="100%"
+      >
         <Table
           variant="simple"
           colorScheme="blue"
@@ -268,8 +273,11 @@ const StudentListPage = () => {
                       </Box>
                     </Tooltip>
                     <Tooltip label="Icard">
-                      <Box p="1"  cursor="pointer"
-                        onClick={() => handlePrintIdCard(student.userName)}>
+                      <Box
+                        p="1"
+                        cursor="pointer"
+                        onClick={() => handlePrintIdCard(student.userName)}
+                      >
                         <Icon as={FaAddressCard} size="sm" colorScheme="blue" />
                       </Box>
                     </Tooltip>
@@ -305,7 +313,6 @@ const StudentListPage = () => {
             ))}
           </Tbody>
         </Table>
-      
       </Flex>
     </FranchiseDashboardLayout>
   );

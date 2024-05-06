@@ -43,10 +43,10 @@ const AllCourses = () => {
     navigate("/update-course", { state: { courseId } }); // Navigate to "/update-branch" with franchiseId
   };
 
-  const handlePhotoSubmit = async (courseId, newPhotoFile) => {
+  const handlePhotoSubmit = async (courseId, shortName, newPhotoFile) => {
     try {
       // Upload new photo file to Firebase Storage
-      const photoRef = ref(storage, `students/${courseId}/photo`);
+      const photoRef = ref(storage, `courses/${shortName}/Photo`);
       await uploadBytes(photoRef, newPhotoFile);
 
       // Get download URL of the new photo
@@ -63,7 +63,7 @@ const AllCourses = () => {
     }
   };
 
-  const handlePhotoChange = async (courseId, e) => {
+  const handlePhotoChange = async (courseId, shortName, e) => {
     const newPhotoFile = e.target.files[0];
 
     // Check if the file size is less than 60kb
@@ -109,7 +109,7 @@ const AllCourses = () => {
         const resizedFile = new Blob([ab], { type: mimeString });
 
         // Upload the resized file to Firebase Storage
-        handlePhotoSubmit(courseId, resizedFile);
+        handlePhotoSubmit(courseId, shortName, resizedFile);
       };
       img.src = dataUrl;
     };
@@ -174,11 +174,11 @@ const AllCourses = () => {
               <Tr key={index}>
                 <Td>{index + 1}</Td>
                 <Td>
-                  {new Date(course.createdAt).toLocaleDateString("en-GB")}
+                {course.createdAt ? new Date(course.createdAt.seconds * 1000).toLocaleDateString("en-GB") : ''}
                 </Td>
                 <Td>
                   <Image
-                    src={course.courseUrl}
+                    src={course.coursePhotoUrl}
                     alt={course.courseName}
                     w="40px"
                     h="40px"
@@ -188,7 +188,7 @@ const AllCourses = () => {
                       fileInput.type = "file";
                       fileInput.accept = "image/*";
                       fileInput.addEventListener("change", (e) =>
-                        handlePhotoChange(course.id, e)
+                        handlePhotoChange(course.id, course.shortName, e)
                       );
                       fileInput.click();
                     }}

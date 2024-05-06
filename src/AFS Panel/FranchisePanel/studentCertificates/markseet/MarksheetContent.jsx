@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
 import QRCode from "qrcode.react";
-import { BASE_URL } from "../../../..";
+import { BASE_URL } from "../../../../info/Info";
 
 const MarksheetContent = ({ studentData }) => {
 
