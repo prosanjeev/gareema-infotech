@@ -2,6 +2,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./franchise/authSlice";
 import branchReducer from './admin/branchSlice';
+import companyInfoReducer from './admin/companyInfoSlice';
 import franchiseStudentsReducer from "../redux/admin/franchiseStudentsSlice";
 import franchiseWallteSlice from "./franchise/franchiseWallteSlice";
 import coursesReducer from './course/coursesSlice'; // Assuming this is the path to your coursesSlice reducer
@@ -13,6 +14,7 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     branch: branchReducer,
+    companyInfo: companyInfoReducer,
     franchiseStudents: franchiseStudentsReducer,
     franchiseWallte: franchiseWallteSlice,
     courses: coursesReducer,

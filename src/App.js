@@ -61,6 +61,7 @@ import DiplomaCourses from "./Pages/Courses/DiplomaCourses";
 import ProfessionalCourses from "./Pages/Courses/ProfessionalCourses";
 import AddCourseSubjectPage from "./AFS Panel/AdminPanel/pages/Course/AddSubject";
 import ViewSubjectPage from "./AFS Panel/AdminPanel/pages/Course/ViewSubject";
+import CompanyInfoUpdate from "./AFS Panel/AdminPanel/pages/profile/CompanyInfoUpdate";
 // import StudentListPage from "./AFS Panel/FranchisePanel/pages/Student/AllStudents";
 
 const App = () => {
@@ -104,6 +105,7 @@ const App = () => {
                     <Route path='admin-login' element={<AdminLogin />} />
                     <Route element={<AdminPrivateRoute />}>
                         <Route path='dashboard' element={<Dashboard />} />
+                        <Route path='admin-profile' element={<CompanyInfoUpdate/>} />
                         {/* <Route path='support' element={<Support />} /> */}
                         <Route path='student' element={<AllStudent />} />
                         <Route path="add-branch" element={<AddBranch />} />

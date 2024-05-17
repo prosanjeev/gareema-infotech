@@ -20,7 +20,7 @@ export const navLinks = [
     {
       icon: FaRegUser,
       text: "Profile",
-      link: "#",
+      link: "/admin-profile",
     },
     {
       icon: IoIosGitBranch,
