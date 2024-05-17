@@ -9,21 +9,8 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import Dashboard from "../Dashboard/Dashboard";
 import DashboardLayout from "../../components/DashboardLayout";
-import {
-  Box,
-  Button,
-  Heading,
-  List,
-  ListItem,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
+import { Box, Button, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 
 const BranchWallet = () => {
   const [requests, setRequests] = useState([]);
@@ -87,10 +74,10 @@ const BranchWallet = () => {
 
   const handleDelete = async (id) => {
     try {
-        const docRef = doc(fireDB, "franchiseData", id);
-        await updateDoc(docRef, {
-            requestAmount: 0,
-          });
+      const docRef = doc(fireDB, "franchiseData", id);
+      await updateDoc(docRef, {
+        requestAmount: 0,
+      });
     } catch (error) {
       console.error("Error deleting request:", error);
     }
@@ -99,7 +86,6 @@ const BranchWallet = () => {
   return (
     <DashboardLayout title="Franchise Requests">
       <Box>
-       
         <Table variant="simple">
           <Thead>
             <Tr>

@@ -2,9 +2,7 @@ import {
   Button,
   Card,
   Center,
-  Checkbox,
   Container,
-  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -13,7 +11,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import {  Link } from "react-router-dom";
 import {  Field, Form, Formik } from "formik";
 import { object, string, ref } from 'yup';
 

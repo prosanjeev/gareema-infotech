@@ -36,7 +36,7 @@ const FranchiseSidenav = ({ branchData }) => {
         base: "full",
         lg: "16rem",
       }}
-      h={{md:"100vh", base:''}}
+      h={{ md: "100vh", base: "" }}
     >
       <Box>
         <Box w="100%" borderBottom="1px solid gray" mt={4}>
@@ -46,7 +46,7 @@ const FranchiseSidenav = ({ branchData }) => {
                 <Img
                   src={branchData.logoUrl}
                   alt="Center Logo"
-                  h={{md:"100px", base:'70px'}}
+                  h={{ md: "100px", base: "70px" }}
                   pb={4}
                   style={{ margin: "auto" }}
                 /> // Center the logo horizontally
@@ -58,12 +58,12 @@ const FranchiseSidenav = ({ branchData }) => {
                   py="2.5rem"
                   color="orange"
                 >
-                  {branchData.centername} 
+                  {branchData.centername}
                 </Heading> // Render centername if logoUrl is not available
               )}
             </ul>
           ) : (
-            <Text color='white'>Loading user data...</Text>
+            <Text color="white">Loading user data...</Text>
           )}
         </Box>
 

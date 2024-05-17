@@ -1,4 +1,3 @@
-import React from 'react'
 import Card from '../../../components/Card'
 import { MdEmail } from "react-icons/md";
 import { Box, Button, Center, Icon, Text, VStack } from '@chakra-ui/react';

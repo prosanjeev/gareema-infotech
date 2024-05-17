@@ -12,7 +12,6 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
 import { Link } from "react-router-dom";
 import { Field, Form, Formik } from "formik";
 import { object, string, ref } from "yup";
@@ -23,7 +22,6 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, fireDB, storage } from "../../../firebase/FirebaseConfig";
 import { toast } from "react-toastify";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
-import Loader from "../loader/Loader";
 import MyContext from "../context/data/myContext";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 

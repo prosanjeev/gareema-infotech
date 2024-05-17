@@ -1,20 +1,5 @@
-import {
-  Box,
-  Button,
-  Card,
-  Checkbox,
-  Flex,
-  FormControl,
-  FormLabel,
-  HStack,
-  Icon,
-  Input,
-  Stack,
-  Text,
-  Textarea,
-} from "@chakra-ui/react";
+import { Box, Flex, Icon, Stack, Text } from "@chakra-ui/react";
 import React from "react";
-import { IoMdMail } from "react-icons/io";
 const SupportCard = ({ leftComponent, icon, title, text }) => {
   return (
     <Flex

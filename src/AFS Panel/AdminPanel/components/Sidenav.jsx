@@ -8,7 +8,6 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 
 const Sidenav = () => {
   const location = useLocation();
-
   const [activeMenu, setActiveMenu] = useState(null);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
 

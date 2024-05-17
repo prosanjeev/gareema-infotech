@@ -1,6 +1,6 @@
 // CourseSelectionPage.jsx
-import React, { useEffect, useState } from "react";
-import {  useLocation, useNavigate } from "react-router-dom";
+import  { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import { fireDB } from './firebase'; // Firebase instance
 import { selectAllCourses } from "../../../redux/course/coursesSelectors";
@@ -31,7 +31,7 @@ const CourseSelectionPage = () => {
   const franchiseId = location.state ? location.state.franchiseId : null;
   const studentId = location.state ? location.state.studentId : null;
 
-console.log("koiw", studentId)
+  console.log("koiw", studentId);
 
   useEffect(() => {
     if (studentId) {
@@ -39,46 +39,46 @@ console.log("koiw", studentId)
     }
   }, [dispatch, studentId]);
 
-//   const handleCourseSelect = async () => {
-//     if (selectedCourse) {
-//       setIsLoading(true);
-//       // Create a record for the selected course in a new collection
-//       await addDoc(collection(fireDB, "studentCourses"), {
-//         studentId,
-//         courseId: selectedCourse,
-//         createdAt: new Date(),
-//       });
-//       // Redirect to another page
-//       //   history.push('/confirmation');
-//       setIsLoading(false);
-//       toast.success("Successfully added course");
-//     }
-//   };
+  //   const handleCourseSelect = async () => {
+  //     if (selectedCourse) {
+  //       setIsLoading(true);
+  //       // Create a record for the selected course in a new collection
+  //       await addDoc(collection(fireDB, "studentCourses"), {
+  //         studentId,
+  //         courseId: selectedCourse,
+  //         createdAt: new Date(),
+  //       });
+  //       // Redirect to another page
+  //       //   history.push('/confirmation');
+  //       setIsLoading(false);
+  //       toast.success("Successfully added course");
+  //     }
+  //   };
 
-const handleCourseSelect = async () => {
+  const handleCourseSelect = async () => {
     if (selectedCourse) {
       setIsLoading(true);
-  
+
       // Get the selected course's fee
       const courseFee = parseInt(selectedCourse.fee);
-  
+
       // Check if the franchise has enough balance
       const franchiseRef = doc(fireDB, "franchiseData", franchiseId);
       const franchiseSnap = await getDoc(franchiseRef);
       const franchiseData = franchiseSnap.data();
       const franchiseWallet = parseInt(franchiseData.wallet);
-  
-      if ( franchiseWallet < courseFee) {
+
+      if (franchiseWallet < courseFee) {
         setIsLoading(false);
         toast.error("Insufficient balance in your wallet");
-        navigate("/wallet-recharge")
+        navigate("/wallet-recharge");
         return;
       }
-  
+
       // Deduct the course fee from the franchise's wallet
       const updatedWallet = parseInt(franchiseWallet) - parseInt(courseFee);
       await updateDoc(franchiseRef, { wallet: updatedWallet });
-  
+
       // Create a record for the selected course in a new collection
       await addDoc(collection(fireDB, "studentCourses"), {
         studentId,
@@ -87,11 +87,10 @@ const handleCourseSelect = async () => {
       });
       setIsLoading(false);
       toast.success("Successfully added course");
-      navigate("/students-list")
-
+      navigate("/students-list");
     }
   };
-  
+
   const handleDurationChange = (e) => {
     const duration = e.target.value;
     setSelectedDuration(duration);
@@ -114,8 +113,9 @@ const handleCourseSelect = async () => {
           }}
         >
           <FormControl my={3}>
-            <FormLabel fontSize='20px'>Course Group</FormLabel>
-            <Select fontSize='20px'
+            <FormLabel fontSize="20px">Course Group</FormLabel>
+            <Select
+              fontSize="20px"
               bgColor="black.50"
               border="1px solid gray"
               value={selectedDuration}
@@ -132,9 +132,10 @@ const handleCourseSelect = async () => {
             </Select>
           </FormControl>
           {selectedDuration && (
-            <FormControl mt={4} fontSize='20px' my={3}>
-              <FormLabel fontSize='20px'>Select a course</FormLabel>
-              <Select fontSize='20px'
+            <FormControl mt={4} fontSize="20px" my={3}>
+              <FormLabel fontSize="20px">Select a course</FormLabel>
+              <Select
+                fontSize="20px"
                 bgColor="black.50"
                 border="1px solid gray"
                 value={selectedCourse ? selectedCourse.id : ""}

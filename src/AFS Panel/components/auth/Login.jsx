@@ -34,9 +34,9 @@ function Login() {
       // navigate('/dashboard');
       const admin = JSON.parse(localStorage.getItem("user"));
       if (admin && admin.user.email === "sanjeevcse2k23@gmail.com") {
-        navigate('/dashboard');
+        navigate("/dashboard");
       } else {
-        navigate('/franchise-dashboard');
+        navigate("/franchise-dashboard");
       }
       setLoading(false);
     } catch (error) {
@@ -56,8 +56,15 @@ function Login() {
 
   return (
     <Flex h="100vh" align="center" justify="center">
-      <Box bg="gray.800" px="10" py="10" rounded="xl" w="25rem" position='relative'>
-      {loading && <Loader  />}
+      <Box
+        bg="gray.800"
+        px="10"
+        py="10"
+        rounded="xl"
+        w="25rem"
+        position="relative"
+      >
+        {loading && <Loader />}
         <Box>
           <Text
             textAlign="center"

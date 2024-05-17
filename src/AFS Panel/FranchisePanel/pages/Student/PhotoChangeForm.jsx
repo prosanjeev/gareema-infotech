@@ -1,6 +1,17 @@
-import React from "react";
 import { Formik, Form, Field } from "formik";
-import { Button, Input, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, FormControl, FormLabel } from "@chakra-ui/react";
+import {
+  Button,
+  Input,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  FormLabel,
+} from "@chakra-ui/react";
 
 const PhotoChangeForm = ({ currentPhotoUrl, onSubmit, onCancel }) => {
   return (
@@ -10,10 +21,7 @@ const PhotoChangeForm = ({ currentPhotoUrl, onSubmit, onCancel }) => {
         <ModalHeader>Change Photo</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Formik
-            initialValues={{ photo: null }}
-            onSubmit={onSubmit}
-          >
+          <Formik initialValues={{ photo: null }} onSubmit={onSubmit}>
             {({ setFieldValue }) => (
               <Form>
                 <Field name="photo">
@@ -26,7 +34,10 @@ const PhotoChangeForm = ({ currentPhotoUrl, onSubmit, onCancel }) => {
                         type="file"
                         accept="image/*"
                         onChange={(event) => {
-                          form.setFieldValue("photo", event.currentTarget.files[0]);
+                          form.setFieldValue(
+                            "photo",
+                            event.currentTarget.files[0]
+                          );
                         }}
                       />
                     </FormControl>

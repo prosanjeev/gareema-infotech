@@ -1,7 +1,6 @@
-import React from 'react'
 import {CustomCard} from '../../../../components/chakra/CustomCard'
 import { FaCheckCircle } from "react-icons/fa";
-import { Box, Button, Card, Center, Icon, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Center, Icon, Text, VStack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 

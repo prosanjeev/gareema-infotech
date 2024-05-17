@@ -7,11 +7,7 @@ import { toast } from "react-toastify";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import Loader from "../loader/Loader";
 import MyContext from "../context/data/myContext";
-import {
-  getDownloadURL,
-  ref,
-  uploadBytes,
-} from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 function Signup() {
   const [name, setName] = useState("");

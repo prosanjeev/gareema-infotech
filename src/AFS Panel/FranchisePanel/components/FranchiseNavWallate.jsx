@@ -1,15 +1,14 @@
-import { Card, Text } from '@chakra-ui/react'
-import React from 'react'
+import { Card, Text } from "@chakra-ui/react";
 // import { useSelector } from 'react-redux';
 
-const FranchiseNavWallate = ({branchData} ) => {
-
+const FranchiseNavWallate = ({ branchData }) => {
   return (
-    <Card px={5} py={0}><Text fontSize='28px' fontWeight='600'>
-        
-         {branchData && branchData.wallet ? branchData.wallet : 0}₹
-     </Text> </Card>
-  )
-}
+    <Card px={5} py={0}>
+      <Text fontSize="28px" fontWeight="600">
+        {branchData && branchData.wallet ? branchData.wallet : 0}₹
+      </Text>{" "}
+    </Card>
+  );
+};
 
-export default FranchiseNavWallate
+export default FranchiseNavWallate;

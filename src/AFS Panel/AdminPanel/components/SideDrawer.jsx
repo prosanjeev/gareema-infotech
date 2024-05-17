@@ -9,10 +9,15 @@ import Sidenav from "./Sidenav";
 const SideDrawer = ({ isOpen, onClose }) => {
   return (
     <>
-      <Drawer  isOpen={isOpen} placement="left" onClose={onClose}>
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton boxSize={10} color="red" bg='white' border='2px solid red' />
+          <DrawerCloseButton
+            boxSize={10}
+            color="red"
+            bg="white"
+            border="2px solid red"
+          />
 
           <DrawerBody>
             <Sidenav />

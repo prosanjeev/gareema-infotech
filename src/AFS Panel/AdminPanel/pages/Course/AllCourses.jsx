@@ -13,6 +13,7 @@ import {
   Td,
   Th,
   Thead,
+  Tooltip,
   Tr,
   useBreakpointValue,
 } from "@chakra-ui/react";
@@ -25,23 +26,33 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { fireDB, storage } from "../../../firebase/FirebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { MdSubject } from "react-icons/md";
+import { CiViewList } from "react-icons/ci";
 
 const AllCourses = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const courses = useSelector(selectAllCourses);
-  console.log("coree", courses.shortName);
+  // console.log("coree", courses.shortName);
   useEffect(() => {
     dispatch(fetchCourses());
   }, [dispatch]);
   const handleStatusChange = (studentId, newStatus) => {
     // Implement your logic to update the status of the student with ID studentId to newStatus
   };
-  const isDesktop = useBreakpointValue({ base: false, md: true });
 
+  
   const handleEditClick = (courseId) => {
     navigate("/update-course", { state: { courseId } }); // Navigate to "/update-branch" with franchiseId
   };
+  const handleAddSubject = (courseId) => {
+    navigate("/add-subject", { state: { courseId } });
+  };
+  const handleViewSubject = (courseId) => {
+    navigate("/view-subject", { state: { courseId } });
+  };
+
+  const isDesktop = useBreakpointValue({ base: false, md: true });
 
   const handlePhotoSubmit = async (courseId, shortName, newPhotoFile) => {
     try {
@@ -117,11 +128,11 @@ const AllCourses = () => {
   };
 
   const CustomCard = React.forwardRef(({ children, ...rest }, ref) => (
-    <Box p="1">
+    <Flex p="1">
       <Tag ref={ref} {...rest} cursor="pointer">
         {children}
       </Tag>
-    </Box>
+    </Flex>
   ));
 
   return (
@@ -174,7 +185,11 @@ const AllCourses = () => {
               <Tr key={index}>
                 <Td>{index + 1}</Td>
                 <Td>
-                {course.createdAt ? new Date(course.createdAt.seconds * 1000).toLocaleDateString("en-GB") : ''}
+                  {course.createdAt
+                    ? new Date(
+                        course.createdAt.seconds * 1000
+                      ).toLocaleDateString("en-GB")
+                    : ""}
                 </Td>
                 <Td>
                   <Image
@@ -213,10 +228,27 @@ const AllCourses = () => {
                   />
                 </Td>
                 <Td>
-                  <CustomCard onClick={() => handleEditClick(course.id)}>
-                    <Icon as={FaRegEdit} size="sm" colorScheme="blue" />
-                  </CustomCard>
+                  <Flex>
+                  <Tooltip label="Edit">
+                    <CustomCard onClick={() => handleEditClick(course.id)}>
+                      <Icon as={FaRegEdit} size="sm" colorScheme="blue" />
+                    </CustomCard>
+                  </Tooltip>
+
+                    <Tooltip label="Add Subject">
+                    <CustomCard onClick={() => handleAddSubject(course.id)}>
+                      <Icon as={MdSubject} size="sm" colorScheme="blue" />
+                    </CustomCard>
+                    </Tooltip>
+
+                    <Tooltip label="View Subject">
+                    <CustomCard onClick={() => handleViewSubject(course.id)}>
+                      <Icon as={CiViewList} size="sm" colorScheme="blue" />
+                    </CustomCard>
+                    </Tooltip>
+                  </Flex>
                 </Td>
+ 
                 {/* <Td>
                      <Button size="sm" colorScheme="red">
                        Delete

@@ -1,20 +1,11 @@
 // StudentListPage.js
 import {
   Box,
-  Button,
   Flex,
   Icon,
   Image,
-  Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Switch,
   Table,
-  Tag,
   Tbody,
   Td,
   Th,
@@ -27,7 +18,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchFranchiseData,
-  selectbranchData,
   selectStudents,
 } from "../../../redux/franchise/authSlice";
 import FranchiseDashboardLayout from "../../components/FranchiseDashboardLayout";
@@ -54,13 +44,6 @@ const StudentListPage = () => {
   };
   const isDesktop = useBreakpointValue({ base: false, md: true });
 
-  const CustomCard = React.forwardRef(({ children, ...rest }, ref) => (
-    <Box p="1">
-      <Tag ref={ref} {...rest} cursor="pointer">
-        {children}
-      </Tag>
-    </Box>
-  ));
   const handleEditClick = (studentId) => {
     navigate("/update-student", { state: { studentId } }); // Navigate to "/update-branch" with franchiseId
   };

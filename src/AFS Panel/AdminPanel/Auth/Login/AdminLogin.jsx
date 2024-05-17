@@ -1,4 +1,3 @@
-import React from 'react'
 import Login from '../../../components/adminAndCenterAuth/Login'
 import { Box } from '@chakra-ui/react'
 

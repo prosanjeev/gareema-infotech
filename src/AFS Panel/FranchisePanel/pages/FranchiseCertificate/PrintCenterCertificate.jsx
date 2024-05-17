@@ -34,41 +34,39 @@ function PrintCenterCertificate() {
 
   return (
     <>
-        <Flex>
-          <div style={{ maxWidth: "70px" }}>
-            <Button
-              mt={4}
-              ml={3}
-              onClick={goBack}
-              colorScheme="green"
-              variant="outline"
-            >
-              Back
-            </Button>
-          </div>
-          <div style={{ maxWidth: "70px" }}>
-            <Button
-              mt={4}
-              ml={3}
-              onClick={printRecord}
-              colorScheme="green"
-              variant="outline"
-            >
-              Print
-            </Button>
-          </div>
-        </Flex>
-
-        <div
-          ref={componentRef}
-        >
-          <div>
-            <ChakraCertificate branchData={branchData} />
-          </div>
+      <Flex>
+        <div style={{ maxWidth: "70px" }}>
+          <Button
+            mt={4}
+            ml={3}
+            onClick={goBack}
+            colorScheme="green"
+            variant="outline"
+          >
+            Back
+          </Button>
         </div>
-        <Flex justify="end">
-          <div onClick={printRecord}></div>
-        </Flex>
+        <div style={{ maxWidth: "70px" }}>
+          <Button
+            mt={4}
+            ml={3}
+            onClick={printRecord}
+            colorScheme="green"
+            variant="outline"
+          >
+            Print
+          </Button>
+        </div>
+      </Flex>
+
+      <div ref={componentRef}>
+        <div>
+          <ChakraCertificate branchData={branchData} />
+        </div>
+      </div>
+      <Flex justify="end">
+        <div onClick={printRecord}></div>
+      </Flex>
     </>
   );
 }

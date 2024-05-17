@@ -1,7 +1,6 @@
 import { Box, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
 import DashboardLayout from "../../components/DashboardLayout";
 import InfoCard from "./components/InfoCard";
-// import { dashboardData } from "./data";
 import {
   FaCodeBranch,
   FaUserGraduate,
@@ -16,13 +15,16 @@ import {
   FaFileSignature,
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBranches, selectBranches } from "../../../redux/admin/branchSlice";
+import {
+  fetchBranches,
+  selectBranches,
+} from "../../../redux/admin/branchSlice";
 import { useEffect } from "react";
-import { selectAllCourses, selectStudentsSize } from "../../../redux/course/coursesSelectors";
+import { selectAllCourses } from "../../../redux/course/coursesSelectors";
 import { fetchCourses } from "../../../redux/course/coursesActions";
 import { selectStudents } from "../../../redux/selectors/franchiseStudentsSelectors";
 import { fetchStudents } from "../../../redux/actions/franchiseStudentsActions";
-import { selectStudentCoursesSize  } from "../../../redux/selectors/enrollmentSelectors";
+import { selectStudentCoursesSize } from "../../../redux/selectors/enrollmentSelectors";
 
 const iconMapping = {
   Branch: FaCodeBranch,
@@ -52,7 +54,6 @@ const Dashboard = () => {
     dispatch(fetchStudents());
     dispatch(fetchCourses());
   }, [dispatch]);
- 
 
   const dashboardData = [
     {

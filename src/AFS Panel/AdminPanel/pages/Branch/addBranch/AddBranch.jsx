@@ -200,7 +200,7 @@ const AddBranch = () => {
         }
       );
       toast.success("New Center Added ", franchiseDocRef.id);
-      navigate('/branch')
+      navigate("/branch");
     } catch (e) {
       console.error("Error adding document: ", e);
     }

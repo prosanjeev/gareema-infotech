@@ -95,7 +95,7 @@ const PrintIdCard = () => {
           // overflow: "hidden", // Remove this line
         }}
       >
-        <IDCard 
+        <IDCard
           {...data}
           style={{ border: "none" }}
           studentData={studentData}

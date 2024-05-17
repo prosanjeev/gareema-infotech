@@ -14,8 +14,8 @@ const store = configureStore({
     auth: authReducer,
     branch: branchReducer,
     franchiseStudents: franchiseStudentsReducer,
-    franchiseWallte:franchiseWallteSlice,
-    courses:coursesReducer,
+    franchiseWallte: franchiseWallteSlice,
+    courses: coursesReducer,
     student: studentReducer,
     notifications: notificationsReducer,
     // Add other reducers here

@@ -1,12 +1,31 @@
 import { useRef, useState, useEffect } from "react";
-import { Box, Input, FormLabel, Button, Text, VStack, IconButton, HStack, Flex } from "@chakra-ui/react";
+import {
+  Box,
+  Input,
+  FormLabel,
+  Button,
+  Text,
+  VStack,
+  IconButton,
+  HStack,
+  Flex,
+} from "@chakra-ui/react";
 import JoditEditor from "jodit-react";
 import DashboardLayout from "../../components/DashboardLayout";
 import { fireDB } from "../../../firebase/FirebaseConfig";
-import { addDoc, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserNotifications, selectNotifications } from "../../../redux/notifications/userNotificationsSlice";
-import DOMPurify from 'dompurify';
+import {
+  fetchUserNotifications,
+  selectNotifications,
+} from "../../../redux/notifications/userNotificationsSlice";
+import DOMPurify from "dompurify";
 import { useToast } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
@@ -16,13 +35,13 @@ const NotificationForUser = () => {
   const [title, setTitle] = useState("");
   const [editingId, setEditingId] = useState(null);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(fetchUserNotifications());
   }, [dispatch]);
-  
+
   const notifications = useSelector(selectNotifications);
-  
+
   const toast = useToast();
   const handleSave = async () => {
     if (!title || !content) {
@@ -138,7 +157,7 @@ const NotificationForUser = () => {
 
   return (
     <DashboardLayout title="Add User Notice">
-      <Box maxW={{md:"40vw", base:'90vw'}} mx="auto" p={6}>
+      <Box maxW={{ md: "40vw", base: "90vw" }} mx="auto" p={6}>
         <Box mb={4}>
           <FormLabel>Title</FormLabel>
           <Input
@@ -157,7 +176,7 @@ const NotificationForUser = () => {
             onChange={(newContent) => {}}
           />
         </Box>
-        
+
         {editingId ? (
           <Button colorScheme="blue" onClick={handleUpdate}>
             Update
@@ -168,7 +187,6 @@ const NotificationForUser = () => {
           </Button>
         )}
 
-        
         <VStack mt={6} align="stretch">
           <Text fontSize="lg" fontWeight="bold">
             Notifications
@@ -176,27 +194,31 @@ const NotificationForUser = () => {
           {notifications.map((notification) => (
             <Box
               key={notification.id}
-             border='1px solid gray'
+              border="1px solid gray"
               borderRadius="md"
-              p={{base:'4', md:'2'}}
+              p={{ base: "4", md: "2" }}
             >
-              
-              <HStack justify='space-between'>
+              <HStack justify="space-between">
                 <Text>{notification.title}</Text>
-               <Flex gap={2}>
-               <IconButton
-                  icon={<EditIcon />}
-                  aria-label="Edit"
-                  onClick={() => handleEdit(notification.id)}
-                />
-                <IconButton
-                  icon={<DeleteIcon />}
-                  aria-label="Delete"
-                  onClick={() => handleDelete(notification.id)}
-                />
-               </Flex>
+                <Flex gap={2}>
+                  <IconButton
+                    icon={<EditIcon />}
+                    aria-label="Edit"
+                    onClick={() => handleEdit(notification.id)}
+                  />
+                  <IconButton
+                    icon={<DeleteIcon />}
+                    aria-label="Delete"
+                    onClick={() => handleDelete(notification.id)}
+                  />
+                </Flex>
               </HStack>
-              <Text mt={5} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(notification.content) }} />
+              <Text
+                mt={5}
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(notification.content),
+                }}
+              />
             </Box>
           ))}
         </VStack>

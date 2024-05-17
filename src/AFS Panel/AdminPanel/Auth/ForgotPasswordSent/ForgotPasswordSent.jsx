@@ -1,7 +1,6 @@
-import React from 'react'
 import Card from '../../../components/Card'
 import { FaCheckCircle } from "react-icons/fa";
-import { Box, Button, Center, Icon, Text, VStack } from '@chakra-ui/react';
+import { Box, Center, Icon, Text, VStack } from '@chakra-ui/react';
 
 
 const ForgotPasswordSent = () => {

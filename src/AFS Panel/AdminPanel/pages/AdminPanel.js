@@ -1,6 +1,6 @@
 // AdminPanel.js
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStudents, addStudent, updateStudent, deleteStudent } from "../../redux/actions/franchiseStudentsActions";
 import { selectStudents, selectStudentsLoading, selectStudentsError } from "../../redux/selectors/franchiseStudentsSelectors";
@@ -45,51 +45,51 @@ const AdminPanel = () => {
 
   return (
     <div>
-    <h2>Manage Students</h2>
-    {/* Form for adding a new student */}
-    <div>
-      <input
-        type="text"
-        placeholder="Name"
-        value={formData.name}
-        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-      />
-      <input
-        type="text"
-        placeholder="Franchise ID"
-        value={formData.franchiseId}
-        onChange={(e) => setFormData({ ...formData, franchiseId: e.target.value })}
-      />
-      <button onClick={handleAddStudent}>Add Student</button>
-    </div>
+      <h2>Manage Students</h2>
+      {/* Form for adding a new student */}
+      <div>
+        <input
+          type="text"
+          placeholder="Name"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Franchise ID"
+          value={formData.franchiseId}
+          onChange={(e) => setFormData({ ...formData, franchiseId: e.target.value })}
+        />
+        <button onClick={handleAddStudent}>Add Student</button>
+      </div>
 
-    {/* Display students list */}
-    <table>
-      <thead>
-        <tr>
-          <th>Student Name</th>
-          <th>Franchise ID</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {students.map((student) => (
-          <tr key={student.id}>
-            <td>{student.studentName}</td>
-            <td>{student.franchiseId}</td>
-            <td>
-              <button onClick={() => handleUpdateStudent(student.id)}>Update</button>
-              <button onClick={() => handleDeleteStudent(student.id)}>Delete</button>
-            </td>
+      {/* Display students list */}
+      <table>
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Franchise ID</th>
+            <th>Actions</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {students.map((student) => (
+            <tr key={student.id}>
+              <td>{student.studentName}</td>
+              <td>{student.franchiseId}</td>
+              <td>
+                <button onClick={() => handleUpdateStudent(student.id)}>Update</button>
+                <button onClick={() => handleDeleteStudent(student.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-    {loading && <p>Loading...</p>}
-    {error && <p>Error: {error}</p>}
-  </div>
-);
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+    </div>
+  );
 };
 
 export default AdminPanel;

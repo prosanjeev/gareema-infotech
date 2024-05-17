@@ -1,6 +1,5 @@
-import {  HStack, Icon, Stack, Text } from "@chakra-ui/react";
+import { HStack, Icon, Stack, Text } from "@chakra-ui/react";
 import { CustomCard } from "../../../../components/chakra/CustomCard";
-
 
 const InfoCard = ({ imgUrl, name, info, inverted, icon }) => {
   return (
@@ -16,7 +15,7 @@ const InfoCard = ({ imgUrl, name, info, inverted, icon }) => {
       boxShadow="2px 2px 4px  black"
     >
       <HStack justify="space-between">
-        <Icon pt={1} pl={5} color=""  boxSize="50px" as={icon} />
+        <Icon pt={1} pl={5} color="" boxSize="50px" as={icon} />
         <Stack px="4">
           <Text
             mt="1"

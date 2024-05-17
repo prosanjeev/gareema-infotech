@@ -20,7 +20,7 @@ const StudentDashboard = () => {
         >
           <InfoCard />
         </GridItem>
-      </Grid> 
+      </Grid>
     </DashboardLayout>
   );
 };

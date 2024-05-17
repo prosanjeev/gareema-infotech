@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -136,7 +136,7 @@ const AddCourse = () => {
         createdAt: currentDate, // Add current date
       });
       toast.success("New Course Added ", coursesDocRef.id);
-      navigate('/all-courses')
+      navigate("/all-courses");
     } catch (e) {
       console.error("Error adding document: ", e);
     }

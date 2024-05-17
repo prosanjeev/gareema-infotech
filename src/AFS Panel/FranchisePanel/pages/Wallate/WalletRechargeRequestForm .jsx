@@ -1,19 +1,15 @@
 // WalletRechargeRequestForm.js
 import React, { useEffect, useState } from "react";
 import {
-  Box,
   Button,
   Card,
-  CardBody,
   Container,
   Flex,
   FormControl,
   FormLabel,
-  HStack,
   Input,
   Stack,
   Text,
-  Textarea,
 } from "@chakra-ui/react";
 import FranchiseDashboardLayout from "../../components/FranchiseDashboardLayout";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,17 +18,15 @@ import {
   selectUserId,
   selectbranchData,
 } from "../../../redux/franchise/authSlice";
-import { updateRequestAmount } from "../../../redux/actions/franchiseWalletActions";
 import { fireDB } from "../../../firebase/FirebaseConfig";
-import { collection, doc,  updateDoc } from "firebase/firestore";
-
+import { collection, doc, updateDoc } from "firebase/firestore";
 
 const WalletRechargeRequestForm = () => {
-  const [requestedAmount, setRequestedAmount] = useState('');
+  const [requestedAmount, setRequestedAmount] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
 
- const franchiseId = useSelector(selectUserId); // Assuming you have a selector to get the franchise ID from your auth state
+  const franchiseId = useSelector(selectUserId); // Assuming you have a selector to get the franchise ID from your auth state
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -42,17 +36,14 @@ const WalletRechargeRequestForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
-  
+
     try {
       // Assuming 'fireDB' is a valid reference to your Firestore instance
-      await updateDoc(
-        doc(collection(fireDB, "franchiseData"), franchiseId),
-        {
-          requestAmount: parseInt(requestedAmount),
-        }
-      );
-  
-      setRequestedAmount(''); // Clear the requested amount after successful update
+      await updateDoc(doc(collection(fireDB, "franchiseData"), franchiseId), {
+        requestAmount: parseInt(requestedAmount),
+      });
+
+      setRequestedAmount(""); // Clear the requested amount after successful update
     } catch (error) {
       console.error("Error requesting amount:", error);
       // Handle errors gracefully, e.g., display an error message to the user
@@ -92,7 +83,18 @@ const WalletRechargeRequestForm = () => {
           </Button>
         </form>
       </Container>
-      <Flex w={{md:"30vw", base:'90vw'}} gap={10} mt={20} mx="auto" fontSize="20px" flexWrap='wrap' border='1px solid gray' p={10} justify='center' borderRadius='10px'>
+      <Flex
+        w={{ md: "30vw", base: "90vw" }}
+        gap={10}
+        mt={20}
+        mx="auto"
+        fontSize="20px"
+        flexWrap="wrap"
+        border="1px solid gray"
+        p={10}
+        justify="center"
+        borderRadius="10px"
+      >
         <Card h={40} w="auto" p={8}>
           <Stack align="center">
             <Text fontSize="24px"> Wallet:</Text>
@@ -109,7 +111,6 @@ const WalletRechargeRequestForm = () => {
             </Text>
           </Stack>
         </Card>
-       
       </Flex>
     </FranchiseDashboardLayout>
   );

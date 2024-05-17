@@ -1,16 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import { Button, Center, Img, Stack, Text } from "@chakra-ui/react";
-import { PDFViewer, StyleSheet } from "@react-pdf/renderer";
+import { StyleSheet } from "@react-pdf/renderer";
 import { useReactToPrint } from "react-to-print";
 import { useDispatch, useSelector } from "react-redux";
-import FranchiseDashboardLayout from "../../components/FranchiseDashboardLayout";
-import StudentCertificateContent from "./StudentCertificateContent";
 import {
   fetchStudentData,
   selectStudentData,
 } from "../../../redux/student/slice/studentSlice";
 import { useLocation, useNavigate } from "react-router-dom";
-import QRCode from "react-qr-code";
 
 const styles = StyleSheet.create({
   page: {
@@ -41,8 +37,6 @@ const StudentCertificate = () => {
       .then(() => setIsLoading(false))
       .catch(() => setIsLoading(false));
   }, [dispatch]);
-
- 
 
   // Function to convert URL to base64
   const toDataURL = (url, callback) => {
@@ -80,10 +74,7 @@ const StudentCertificate = () => {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
-  return (
-   <>
-   </>
-  );
+  return <></>;
 };
 
 export default StudentCertificate;

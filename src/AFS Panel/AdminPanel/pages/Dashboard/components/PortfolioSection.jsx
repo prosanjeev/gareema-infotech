@@ -1,5 +1,4 @@
 import { Button, HStack, Icon, Stack, Tag, Text } from "@chakra-ui/react";
-import React from "react";
 import {
   AiOutlineInfoCircle,
   AiOutlineArrowDown,

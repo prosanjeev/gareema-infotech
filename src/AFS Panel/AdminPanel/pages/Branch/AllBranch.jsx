@@ -1,9 +1,7 @@
 import DashboardLayout from "../../components/DashboardLayout";
 import {
-  Box,
   Button,
   Flex,
-  Grid,
   Icon,
   Image,
   Switch,

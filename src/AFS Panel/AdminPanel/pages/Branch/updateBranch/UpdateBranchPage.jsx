@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -15,16 +15,15 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { Field, Form, Formik, useFormikContext, FormikContext } from "formik";
+import { Field, Form, Formik, useFormikContext,  } from "formik";
 import { object, string, number } from "yup";
 import DashboardLayout from "../../../components/DashboardLayout";
-import { collection, updateDoc, doc, setDoc, getDoc } from "firebase/firestore";
+import {  updateDoc, doc,  getDoc } from "firebase/firestore";
 import data from "../../../../../components/state-wise-cities-data/data";
-import { fireDB, storage } from "../../../../firebase/FirebaseConfig";
+import { fireDB } from "../../../../firebase/FirebaseConfig";
 import { PersonalInformation, UserCradesial } from "../addBranch/data/data";
 import TitleBox from "../../../../components/components/TitleBox";
 import { toast } from "react-toastify";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const franchiseValidationSchema = object({
@@ -48,8 +47,7 @@ const UpdateBranchPage = () => {
   const [selectedState, setSelectedState] = useState("");
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
-  const [logoFile, setLogoFile] = useState(null); // State to hold logo file
-  const [signFile, setSignFile] = useState(null); // State to hold signature file
+  
   // const [centerId, setCenterId] = useState(""); // State to hold the centerId
 
   const navigate = useNavigate();

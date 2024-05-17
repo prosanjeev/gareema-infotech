@@ -3,13 +3,15 @@ import { useReactToPrint } from "react-to-print";
 import { Button, Flex } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchStudentData, selectStudentData } from "../../../redux/student/slice/studentSlice";
+import {
+  fetchStudentData,
+  selectStudentData,
+} from "../../../redux/student/slice/studentSlice";
 import MarksheetContent from "./MarksheetContent";
 
 function PrintMarksheet({ onClick, visitorData }) {
   const componentRef = useRef();
   const navigate = useNavigate();
-
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -22,7 +24,6 @@ function PrintMarksheet({ onClick, visitorData }) {
       .then(() => setIsLoading(false))
       .catch(() => setIsLoading(false));
   }, [dispatch]);
- 
 
   const printRecord = () => {
     console.log("Print record..");
@@ -39,7 +40,7 @@ function PrintMarksheet({ onClick, visitorData }) {
 
   return (
     <>
-      <div >
+      <div>
         <Flex>
           <div style={{ maxWidth: "70px" }}>
             <Button
@@ -70,9 +71,7 @@ function PrintMarksheet({ onClick, visitorData }) {
           // style={{ marginLeft: "20px", marginRight: "20px", marginTop: "0px" }}
           // style={{ margin: "20px" }}
         >
-         
-            <MarksheetContent  studentData={studentData} />
-          
+          <MarksheetContent studentData={studentData} />
         </div>
         <Flex justify="end">
           <div onClick={printRecord}></div>
@@ -83,4 +82,3 @@ function PrintMarksheet({ onClick, visitorData }) {
 }
 
 export default PrintMarksheet;
-

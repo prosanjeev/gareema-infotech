@@ -28,8 +28,7 @@ import StudentLogin from "./AFS Panel/StudentPanel/Auth/Login/Login";
 import WalletRechargeRequestForm from "./AFS Panel/FranchisePanel/pages/Wallate/WalletRechargeRequestForm ";
 import FranchiseProfilePage from "./AFS Panel/FranchisePanel/pages/Profile/FranchiseProfilePage";
 import CourseCategoryPage from "./AFS Panel/AdminPanel/pages/Course/CourseCategory";
-import Signup from "./AFS Panel/components/auth/Signup";
-import MyState from "./AFS Panel/components/context/data/myState";
+// import Signup from "./AFS Panel/components/auth/Signup";
 import AdminPrivateRoute from "./AFS Panel/components/privateRoute/AdminPrivateRoute";
 import FranchisePrivateRoute from "./AFS Panel/components/privateRoute/FranchisePrivateRoute";
 import FranchiseLogin from "./AFS Panel/FranchisePanel/Auth/Login/FranchiseLogin";
@@ -39,20 +38,15 @@ import ForgotPassword from "./AFS Panel/components/adminAndCenterAuth/ForgotPass
 import UpdateBranch from "./AFS Panel/AdminPanel/pages/Branch/UpdateBranch";
 import BranchPage from "./AFS Panel/AdminPanel/pages/Branch/Branch";
 import ContactUsQuery from "./AFS Panel/AdminPanel/pages/Query/ContactUsQuery";
-// import FranchiseCertificate from "./AFS Panel/FranchisePanel/pages/FranchiseCertificate/old/FranchiseCertificate";
 import AddStudentPage from "./AFS Panel/FranchisePanel/pages/Student/AddStudentPage";
 import StudentListPage from "./AFS Panel/FranchisePanel/pages/Student/StudentListPage";
 import AdminPanel from "./AFS Panel/AdminPanel/pages/AdminPanel";
 import BranchWallet from "./AFS Panel/AdminPanel/pages/Wallet/BranchWallet";
-import AddCourseForm from "./AFS Panel/AdminPanel/pages/Course/AddCourse";
 import AddCourse from "./AFS Panel/AdminPanel/pages/Course/AddCourse";
 import AllCourses from "./AFS Panel/AdminPanel/pages/Course/AllCourses";
 import CourseSelectionPage from "./AFS Panel/FranchisePanel/pages/Course/CourseSelectionPage";
 import StudentIDCard from "./AFS Panel/StudentPanel/pages/IDCard/StudentIDCard";
-import UpdateBranchPage from "./AFS Panel/AdminPanel/pages/Branch/updateBranch/UpdateBranchPage";
-import StudentCertificate from "./AFS Panel/FranchisePanel/studentCertificates/certificate/StudentCertificate";
 import UpdateStudentPage from "./AFS Panel/FranchisePanel/pages/Student/UpdateStudentPage";
-import ChakraCertificate from "./AFS Panel/FranchisePanel/pages/FranchiseCertificate/ChakraCertificate";
 import PrintCenterCertificate from "./AFS Panel/FranchisePanel/pages/FranchiseCertificate/PrintCenterCertificate";
 import PrintMarksheet from "./AFS Panel/FranchisePanel/studentCertificates/markseet/PrintMarksheet";
 import UpdateCourse from "./AFS Panel/AdminPanel/pages/Course/UpdateCourse";
@@ -65,13 +59,14 @@ import SerivicesGrid from "./Pages/services/SerivicesGrid";
 import DiplomaCourses from "./Pages/Courses/DiplomaCourses";
 // import LanguageCourses from "./Pages/courses/LanguageCourses";
 import ProfessionalCourses from "./Pages/Courses/ProfessionalCourses";
-import BinaryMLMTree from "./Pages/demo/demo";
+import AddCourseSubjectPage from "./AFS Panel/AdminPanel/pages/Course/AddSubject";
+import ViewSubjectPage from "./AFS Panel/AdminPanel/pages/Course/ViewSubject";
 // import StudentListPage from "./AFS Panel/FranchisePanel/pages/Student/AllStudents";
 
 const App = () => {
 
     return (
-        <MyState>
+        <>
             <Router>
                 <Routes>
                     <Route path='/' element={<MainLayout />}>
@@ -112,10 +107,17 @@ const App = () => {
                         {/* <Route path='support' element={<Support />} /> */}
                         <Route path='student' element={<AllStudent />} />
                         <Route path="add-branch" element={<AddBranch />} />
+                        <Route path="update-branch" element={<UpdateBranch />} />
                         <Route path='branch' element={<AllBranch />} />
+                        <Route path='branch-wallet' element={<BranchWallet />} />
                         <Route path='course-category' element={<CourseCategoryPage />} />
                         <Route path='contact-us-query' element={<ContactUsQuery />} />
-                        <Route path='branch-wallet' element={<BranchWallet />} />
+                        <Route path="branchpage" element={<BranchPage />} />
+                        <Route path="add-course" element={<AddCourse />} />
+                        <Route path="all-courses" element={<AllCourses />} />
+                        <Route path="update-course" element={<UpdateCourse />} />
+                        <Route path="add-subject" element={<AddCourseSubjectPage />} />
+                        <Route path="view-subject" element={<ViewSubjectPage />} />
                     </Route>
 
                     <Route path='franchise-login' element={<FranchiseLogin />} />
@@ -140,27 +142,21 @@ const App = () => {
                     {/* <Route path="/signup*" element={<Signup />} /> */}
                     {/* <Route path="/login" element={<Login />} /> */}
                     <Route path="*" element={<> not found</>} />
-                    <Route path="update-branch" element={<UpdateBranch />} />
-                    <Route path="branchpage" element={<BranchPage />} />
 
                     {/* <Route path="succ" element={<PasswordResetDone/>} /> */}
                     <Route path="forgot-password" element={<ForgotPassword />} />
                     <Route path="all-students" element={<AdminPanel />} />
-                    <Route path="add-course" element={<AddCourse />} />
-                    <Route path="all-courses" element={<AllCourses />} />
-                    <Route path="update-course" element={<UpdateCourse />} />
 
                     <Route path="id-card" element={<StudentIDCard />} />
                     <Route path="idcard" element={<PrintIdCard />} />
-                    <Route path="student-certificate-verification/:regNumber" element={<QrVerification />} />
+                    <Route path="qr-verification/:regNumber" element={<QrVerification />} />
                     <Route path="user-notice" element={<NotificationForUser />} />
-                    <Route path="demo" element={<BinaryMLMTree/>} />
                     {/* <Route path="chakra-certificate" element={<ChakraCertificate/>} /> */}
 
                 </Routes>
             </Router>
 
-        </MyState>
+        </>
     )
 }
 

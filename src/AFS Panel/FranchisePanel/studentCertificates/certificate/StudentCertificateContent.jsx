@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Image,
-  Flex,
-  Text,
-  Stack,
-} from "@chakra-ui/react";
+import { Box, Image, Flex, Text, Stack } from "@chakra-ui/react";
 import QRCode from "qrcode.react";
 
 const StudentCertificateContent = ({ studentData }) => {

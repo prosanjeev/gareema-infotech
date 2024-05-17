@@ -1,4 +1,3 @@
-import React from 'react'
 import { CustomCard } from '../../../../components/chakra/CustomCard'
 import { Box, Center, Divider, ListItem, Text, UnorderedList, keyframes } from '@chakra-ui/react'
 import { useDispatch, useSelector } from "react-redux";

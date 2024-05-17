@@ -8,7 +8,8 @@ const FranchisePrivateRoute = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const isLoggedInLocalStorage = localStorage.getItem("isLoggedIn") === "true";
+    const isLoggedInLocalStorage =
+      localStorage.getItem("isLoggedIn") === "true";
     if (isLoggedIn && !isLoggedInLocalStorage) {
       // User is logged in but localStorage says otherwise, log them out
       dispatch(setLoggedIn(false));

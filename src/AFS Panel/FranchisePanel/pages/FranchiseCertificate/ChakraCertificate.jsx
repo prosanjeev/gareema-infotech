@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Image,
-  Flex,
-  Text,
-  Badge,
-  Grid,
-  GridItem,
-  Stack,
-} from "@chakra-ui/react";
+import { Box, Image, Flex, Text, Stack } from "@chakra-ui/react";
 import QRCode from "qrcode.react";
 
 const ChakraCertificate = ({ branchData }) => {
-  const [formData, setFormData] = useState({
+  const [formData] = useState({
     phone: "0987654321",
     email: "info@example.com",
     website: "www.example.com",
@@ -23,19 +14,17 @@ const ChakraCertificate = ({ branchData }) => {
 
   const [qdata, setQdata] = useState("");
 
-  useEffect(() => {
-    setQRData();
-  }, [branchData]);
+ 
 
   const {
-    directorName = "",
-    gender = "",
-    primaryPhone = "",
-    email = "",
-    logoUrl = "",
-    centerId = "",
-    centerName = "",
-    postOffice = "",
+    // directorName = "",
+    // gender = "",
+    // primaryPhone = "",
+    // email = "",
+    // logoUrl = "",
+    // centerId = "",
+    // centerName = "",
+    // postOffice = "",
     policeStation = "",
     pinCode = "",
     centerPlace = "",
@@ -43,6 +32,10 @@ const ChakraCertificate = ({ branchData }) => {
     district = "",
     createdAt,
   } = branchData || {};
+
+  useEffect(() => {
+    setQRData();
+  }, [branchData]);
 
   function setQRData() {
     // var url = Object.values(formData).join("\n");
@@ -142,14 +135,15 @@ const ChakraCertificate = ({ branchData }) => {
         </Flex> */}
         <Flex justify="center" position="absolute" left="135px" bottom="95px">
           <Text fontWeight="bold" fontSize="18px">
-            {branchData &&
-              new Date(createdAt).toLocaleDateString("en-GB")}
+            {branchData && new Date(createdAt).toLocaleDateString("en-GB")}
           </Text>
         </Flex>
 
         <Stack
-          position="absolute"  h='260px'
-          bottom="290px" justify='center'
+          position="absolute"
+          h="260px"
+          bottom="290px"
+          justify="center"
           left="50%"
           transform="translateX(-50%)"
         >
@@ -169,12 +163,10 @@ const ChakraCertificate = ({ branchData }) => {
             his/her Centre Name - {branchData && branchData.centerName}
           </Text>
 
-          <Text fontSize="lg" textAlign="center" maxW='350px'>
+          <Text fontSize="lg" textAlign="center" maxW="350px">
             At- {centerPlace}, {policeStation}, {district}, {state}, {pinCode},
             IN
           </Text>
-         
-         
         </Stack>
 
         {/* Qr Code */}

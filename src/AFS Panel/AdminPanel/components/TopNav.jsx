@@ -15,15 +15,15 @@ const TopNav = ({ title, onOpen }) => {
   const navigate = useNavigate();
   // const user = JSON.parse(localStorage.getItem('user'))
   const handleLogout = () => {
-    localStorage.clear('user');
-    navigate('/admin-login');
-}
+    localStorage.clear("user");
+    navigate("/admin-login");
+  };
   return (
-    <Box px="4" bg="#2A3542" >
+    <Box px="4" bg="#2A3542">
       <HStack maxW="80rem" h="16" justify="space-between" mx="auto">
         <Icon
           as={FaBars}
-          color='white'
+          color="white"
           boxSize={8}
           onClick={onOpen}
           display={{
@@ -31,16 +31,15 @@ const TopNav = ({ title, onOpen }) => {
             lg: "none",
           }}
         />
-        <Heading fontWeight="medium" fontSize="28px" color='white'>
+        <Heading fontWeight="medium" fontSize="28px" color="white">
           {title}
         </Heading>
 
         <Menu>
-          <MenuButton >
-            <Icon as={FaUserTie} fontSize="24px" color='white'/>
+          <MenuButton>
+            <Icon as={FaUserTie} fontSize="24px" color="white" />
           </MenuButton>
-          <MenuList border='1px solid #d4cfcf'>
-            
+          <MenuList border="1px solid #d4cfcf">
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
             <MenuItem>Support</MenuItem>
           </MenuList>

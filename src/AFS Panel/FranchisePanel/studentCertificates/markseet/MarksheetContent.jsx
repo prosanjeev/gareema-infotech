@@ -4,9 +4,6 @@ import {
   Image,
   Flex,
   Text,
-  Badge,
-  Grid,
-  GridItem,
   Stack,
   Table,
   Thead,
@@ -15,12 +12,10 @@ import {
   Th,
   Td,
 } from "@chakra-ui/react";
-import { useParams, useNavigate } from "react-router-dom";
 import QRCode from "qrcode.react";
 import { BASE_URL } from "../../../../info/Info";
 
 const MarksheetContent = ({ studentData }) => {
-
   const [qdata, setQdata] = useState("");
 
   useEffect(() => {
@@ -30,7 +25,7 @@ const MarksheetContent = ({ studentData }) => {
   function setQRData() {
     // var url = Object.values(studentData && studentData.userName);
     const url = studentData ? studentData.userName : "";
-    const value = `${BASE_URL}/marksheet-verification/`
+    const value = `${BASE_URL}/qr-verification/`;
     setQdata(`${value}${url}`);
     // setQdata(`https://www.youtube.com`);  //https://computer-institute.netlify.app/
   }
@@ -68,22 +63,21 @@ const MarksheetContent = ({ studentData }) => {
             position: "relative",
             border: "1px solid gray",
             padding: "50px",
-            marginTop:'10px'
+            marginTop: "10px",
           }}
         >
           <Box style={pseudoElementStyles}></Box>
           <Box style={{ position: "relative", zIndex: 1 }}>
-            
-            <Flex justify="center"  position='absolute' top='78px' left='-7'>
+            <Flex justify="center" position="absolute" top="78px" left="-7">
               <Image
-                src={studentData &&  studentData.centerPhotoUrl}
+                src={studentData && studentData.centerPhotoUrl}
                 alt="Company Logo"
                 height="100px"
                 width="100px"
                 mb={-4}
               />
             </Flex>
-           
+
             <Box
               bg="gray.50"
               textAlign="end"
@@ -101,7 +95,9 @@ const MarksheetContent = ({ studentData }) => {
               position="absolute"
               right={0}
               top="286px"
-              px={2}  left='35%' transform='translateX(-65%)'
+              px={2}
+              left="35%"
+              transform="translateX(-65%)"
             >
               <Text fontSize="14px" fontWeight="bold">
                 {studentData && studentData.studentId}
@@ -128,7 +124,7 @@ const MarksheetContent = ({ studentData }) => {
                   ).toLocaleDateString("en-GB")}{" "}
                 </Text>
               </Flex>
-            {/* Qr Code */}
+              {/* Qr Code */}
               <Box
                 as="div"
                 left="22px"
@@ -141,34 +137,39 @@ const MarksheetContent = ({ studentData }) => {
               </Box>
             </Stack>
 
-          <Stack position='absolute' top='330px' left='50%' transform='translateX(-50%)'>
-          <Text fontSize="lg" textAlign="center">
-              Certificate of Achievement Awarded to
-            </Text>
-            <Text fontSize="lg"  textAlign="center">
-              Ms/ Mr.   {studentData && studentData.studentName}
-            </Text>
-            <Text fontSize="lg"  textAlign="center">
-              S/o D/o W/o  {studentData && studentData.fatherName}
-            </Text>
+            <Stack
+              position="absolute"
+              top="330px"
+              left="50%"
+              transform="translateX(-50%)"
+            >
+              <Text fontSize="lg" textAlign="center">
+                Certificate of Achievement Awarded to
+              </Text>
+              <Text fontSize="lg" textAlign="center">
+                Ms/ Mr. {studentData && studentData.studentName}
+              </Text>
+              <Text fontSize="lg" textAlign="center">
+                S/o D/o W/o {studentData && studentData.fatherName}
+              </Text>
 
-            <Text fontSize="lg"  textAlign="center">
-              has successfully completed the
-            </Text>
-            <Text fontSize="lg"  textAlign="center">
-            {studentData && studentData.courses.join('')}....
-            </Text>
-            <Text fontSize="lg"  textAlign="center">
-             at- {studentData && studentData.centerName}
-            </Text>
-           
-          </Stack>
+              <Text fontSize="lg" textAlign="center">
+                has successfully completed the
+              </Text>
+              <Text fontSize="lg" textAlign="center">
+                {studentData && studentData.courses.join("")}....
+              </Text>
+              <Text fontSize="lg" textAlign="center">
+                at- {studentData && studentData.centerName}
+              </Text>
+            </Stack>
 
             <Flex
-              position="absolute"  top='565px'
+              position="absolute"
+              top="565px"
               w="100%"
               maxH="220px"
-              h="220px"   
+              h="220px"
               // border="2px solid"
               align="center"
             >
@@ -258,17 +259,16 @@ const MarksheetContent = ({ studentData }) => {
                 GRADE D
               </Badge>
             </Flex> */}
-
           </Box>
-            <Flex justify="center" position='absolute' right='90px' bottom='90px'>
-              <Image
-                src='/signature.png'
-                alt="Company Logo"
-                height="60px"
-                width="140px"
-                mb={-4}
-              />
-            </Flex>
+          <Flex justify="center" position="absolute" right="90px" bottom="90px">
+            <Image
+              src="/signature.png"
+              alt="Company Logo"
+              height="60px"
+              width="140px"
+              mb={-4}
+            />
+          </Flex>
         </Box>
       </Box>
     </Flex>

@@ -24,7 +24,7 @@ export const franchisedashboardData = [
   },
   {
     name: "Student",
-    info: "1789",
+    info: "29",
     icon: iconMapping["Student"],
   },
   {
@@ -34,7 +34,7 @@ export const franchisedashboardData = [
   },
   {
     name: "Admission",
-    info: "1290",
+    info: "90",
     icon: iconMapping["Admission"],
   },
   {

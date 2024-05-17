@@ -8,6 +8,6 @@ const AdminPrivateRoute = () => {
   } else {
     return <Navigate to="/admin-login" />;
   }
-}
+};
 
 export default AdminPrivateRoute;

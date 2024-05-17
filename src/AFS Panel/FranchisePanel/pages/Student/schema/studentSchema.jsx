@@ -37,7 +37,7 @@ export const studentValidationSchema = object({
   dateOfBirth: date()
     .required("Date of Birth is required")
     .max(new Date(), "Date of Birth cannot be in the future"),
-    state: string().required("State is Required"),
+  state: string().required("State is Required"),
   district: string().required("District is Required"),
   pinCode: number()
     .required("Pin Code is Required")
@@ -46,7 +46,7 @@ export const studentValidationSchema = object({
       "Must be exactly 6 digits",
       (val) => val && val.toString().length === 6
     ),
-  
+
   policeStation: string().required("Police Station is Required"),
   postOffice: string().required("Post Office Place is Required"),
   village: string().required("Village Place is Required"),
